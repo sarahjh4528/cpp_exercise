@@ -19,10 +19,18 @@ void removeDuplicate(string& istr) {
 
 int main()
 {
-    string inStr = "This string contains duplicated characters, remove them.";
+    string inStr[5] = {
+        "This string contains duplicated characters, remove them.",
+        "aaaaaa",
+        "",
+        "aaabbb",
+        "abababbaabb"
+    };
 
-    cout << "Orignal string: " << inStr << endl;
-    removeDuplicate(inStr);
-    cout << "After removing duplicated char: " << inStr << endl;
+    for (auto ist : inStr) {
+        cout << "Orignal string: " << ist << endl;
+        removeDuplicate(ist);
+        cout << "After removing duplicated char: " << ist << endl;
+    }
     return 0;
 }
