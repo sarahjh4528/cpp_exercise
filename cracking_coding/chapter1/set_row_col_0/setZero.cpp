@@ -1,11 +1,11 @@
 #include<iostream>
 #include<unordered_set>
 
-using namespace std;
-
 template <typename T, size_t N, size_t M>
 void printMatrix(T (&m)[N][M])
 {
+    using std::cout;
+    using std::endl;
     for (int i = 0; i != N; ++i) {
         for (int j = 0 ; j != M; ++j) {
             cout << m[i][j] << ", ";
@@ -18,6 +18,7 @@ void printMatrix(T (&m)[N][M])
 template <typename T, size_t N, size_t M>
 void setZero(T (&m)[N][M])
 {
+    using std::unordered_set;
     unordered_set<int> row_to_replace, col_to_replace;
     for (int i = 0; i != N; ++i) {
         for (int j = 0; j != M; ++j) {
@@ -43,6 +44,8 @@ void setZero(T (&m)[N][M])
 
 int main()
 {
+    using std::cout;
+    using std::endl;
 #if 0
     int inMatrix[4][5] = {
         1, 3, 5, 7, 0,
