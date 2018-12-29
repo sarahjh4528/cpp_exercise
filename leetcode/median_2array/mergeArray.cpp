@@ -11,6 +11,12 @@ void printVector(const vector<int>& v)
     cout << endl;
 }
 
+/* Merge sort
+ * Create the 3rd array to hold the merged sorted array.
+ * Loop through both arrays, pick the smaller value and push onto the merged array.
+ * Append the remaining ones if any array still has elements
+ */
+
 void mergeArray(const vector<int>& v1, const vector<int>& v2)
 {
     vector<int> mergedV;
