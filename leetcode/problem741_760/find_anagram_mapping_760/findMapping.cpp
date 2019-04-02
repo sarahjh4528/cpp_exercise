@@ -9,6 +9,7 @@ class Solution
 {
 public:
     vector<int> anagramMappings(vector<int>& A, vector<int>& B) {
+#if 0
         unordered_map<int, queue<int>> mapDict;
         for (int i = 0; i < B.size(); ++i) {
             mapDict[B[i]].push(i);
@@ -22,6 +23,19 @@ public:
             }
         }
         return ret;
+#else
+// Better version. Both 100%
+        unordered_map<int, int> bMap;
+        for (int i = 0; i < B.size(); ++i) {
+            bMap[B[i]] = i;
+        }
+        vector<int> ret(A.size(), 0);
+        int j = 0;
+        for (auto a : A) {
+            ret[j++] = bMap[a];
+        }
+        return ret;
+#endif
     }
 };
 int main()
