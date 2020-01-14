@@ -1,63 +1,44 @@
 #include<iostream>
-#include<string>
-#include<unordered_set>
+#include<vector>
 
 using namespace std;
 
-#define LOOPSIZE 7
-string sampleStr[LOOPSIZE] = {
+#define LOOP 9
+
+string sampleStr[] = {
 "abcabcbb",
 "bbbbb",
 "pwwkew",
 "",
 " ",
 "au",
-"dvdf"
+"dvdf",
+"cdd",
+"abba"
 };
 
 class Solution {
-private:
-    void printMySet(unordered_set<char> mySet) {
-        for (const auto& elem : mySet) {
-            cout << elem << ", ";
-        }
-        cout << endl;
-    }
 public:
     int lengthOfLongestSubstring(string s) {
-        int longestLen = 0;
-        int strLen = s.length();
-        if (strLen == 0)
-            return 0;
-        if (strLen == 1)
-            return 1;
-
-        for (int i = 0; i <= strLen - 2; i++) {
-            unordered_set<char> uSet = {s[i]};
-            for (int j = i+1; j <= strLen - 1; j++) {
-                if (uSet.find(s[j]) != uSet.end()) {
-                    // duplicate char, calculate length and continue
-                    if (longestLen < uSet.size())
-                        longestLen = uSet.size();
-                        break;
-                } else {
-                    uSet.insert(s[j]);
-                }
-            }
-            if (longestLen < uSet.size())
-                longestLen = uSet.size();
+        vector<int> table(256, -1);
+        int maxLen = 0, rstart = -1;
+        for (int i = 0; i < s.length(); i++) {
+            if (table[s[i]] > rstart)
+                rstart = table[s[i]];
+            table[s[i]] = i;
+            maxLen = max((i - rstart), maxLen);
         }
-        return longestLen;
+        return maxLen;
     }
 };
 
 int main()
 {
-    for (int i = 0; i < LOOPSIZE; i++) {
+    for (int i = 0; i < LOOP; i++) {
         string inputStr = sampleStr[i];
-        cout << inputStr << endl;
         Solution s;
         int longestSubStringLen = s.lengthOfLongestSubstring(inputStr);
+        cout << inputStr << endl;
         cout << longestSubStringLen << endl;
     }
 
