@@ -1,52 +1,33 @@
 #include<iostream>
-using std::cout;
-using std::endl;
+#include<vector>
 
-void printArray(int *a, int aLen)
+using namespace std;
+
+void printVec(vector<int>& v)
 {
-    if (!a || aLen == 0)
-        return;
-
-    for (int i = 0; i < aLen; ++i) {
-        cout << a[i] << " ";
-    }
+    for (auto i : v)
+        cout << i << " ";
     cout << endl;
 }
 
-void swap(int &a, int &b)
-{
-    int temp = a;
-    a = b;
-    b = temp;
-}
+int main() {
+    vector<int> inList = {1, 5, 94, 33, 4, 66, 9, 22, 77, 20};
 
-void iSort(int *a, int arrLen)
-{
-    if (!a || arrLen <= 1 )
-        return;
+    printVec(inList);
+    int len = inList.size();
+    int sortTo = 0;
 
-    int toSort = 1;
+    for (int i = 1; i < len; i++) {
+        int j = 0, val = inList[i];
+        while (j <= sortTo && inList[i] >= inList[j])
+            j++;
 
-    for (int i = 1; i != arrLen; ++i) {
-        for (int j = toSort; j > 0; --j) {
-            if (a[j] < a[j-1])
-                swap(a[j], a[j-1]);
-            else
-                break;
+        if (j <= sortTo) {
+            inList.erase(inList.begin()+i);
+            inList.insert(inList.begin()+j, val);
         }
-        ++toSort;
+        sortTo++;
     }
-}
-
-int main()
-{
-    int arr[10] = {45, 2, 33, 44, 28, 19, 220, 99, 49, 50};
-
-    cout << "Before" << endl;
-    printArray(arr, 10);
-
-    iSort(arr, 10);
-    cout << "After" << endl;
-    printArray(arr, 10);
+    printVec(inList);
     return 0;
 }

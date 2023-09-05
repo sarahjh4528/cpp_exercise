@@ -1,53 +1,30 @@
 #include<iostream>
-using std::cout;
-using std::endl;
+#include<vector>
 
-void printArray(int *a, int aLen)
+using namespace std;
+
+void printVec(vector<int>& v)
 {
-    if (!a || aLen == 0)
-        return;
-
-    for (int i = 0; i < aLen; ++i) {
-        cout << a[i] << " ";
-    }
+    for (auto i : v)
+        cout << i << " ";
     cout << endl;
 }
 
-void swap(int &a, int &b)
-{
-    int temp = a;
-    a = b;
-    b = temp;
-}
+int main() {
+    vector<int> inList = {1, 5, 94, 33, 4, 66, 9, 22, 77, 20};
 
-void sSort(int *a, int aLen)
-{
-    if (!a || aLen <= 0)
-        return;
+    int start = 0, maxIndex = inList.size() - 1;
 
-    for (int i = 0; i < aLen; ++i) {
-        int minNum = a[i];
-        int minIndex = i;
-        for (int j = i + 1; j < aLen; ++j) {
-            if (a[j] < minNum) {
-                minNum = a[j];
-                minIndex = j;
-            }
-        }
-        if (i != minIndex)
-            swap(a[i], a[minIndex]);
+    printVec(inList);
+    while (start < maxIndex) {
+        int smIndex = start;
+        for (int i = start; i <= maxIndex; i++)
+            smIndex = (inList[i] < inList[smIndex])? i : smIndex;
+
+        if (smIndex > start)
+            swap(inList[start], inList[smIndex]);
+        start++;
     }
-}
-
-int main()
-{
-    int arr[10] = {45, 2, 33, 44, 28, 19, 220, 99, 49, 50};
-
-    cout << "Before" << endl;
-    printArray(arr, 10);
-
-    sSort(arr, 10);
-    cout << "After" << endl;
-    printArray(arr, 10);
+    printVec(inList);
     return 0;
 }

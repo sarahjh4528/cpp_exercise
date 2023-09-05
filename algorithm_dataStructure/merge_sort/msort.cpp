@@ -1,66 +1,57 @@
 #include<iostream>
-#include<iterator>
+#include<vector>
 
-using std::cout;
-using std::endl;
+using namespace std;
 
-int arr[10] = {45, 2, 33, 44, 28, 19, 220, 99, 49, 50};
 int arrTemp[10] = {0};
 
-void printArr(int *arr, int aLen)
+void printVec(vector<int>& v)
 {
-    for (int i = 0; i != aLen; ++i) {
-        cout << arr[i] << " ";
-    }
+    for (auto i : v)
+        cout << i << " ";
     cout << endl;
 }
 
-void mergeArray(int low, int mid, int high)
+vector<int> mergeVec(vector<int>& v1, vector<int>& v2)
 {
-    int index1 = low, index2 = mid + 1;
-    int indexTemp = low;
+    vector<int> ret;
 
-    while (index1 <= mid && index2 <= high) {
-        if (arr[index1] < arr[index2]) {
-            arrTemp[indexTemp] = arr[index1];
-            ++index1;
+    int v1Len = v1.size(), v2Len = v2.size();
+    int i1 = 0, i2 = 0;
+    while (i1 < v1Len && i2 < v2Len) {
+        if (v1[i1] < v2[i2]) {
+            ret.push_back(v1[i1]);
+            i1++;
         } else {
-            arrTemp[indexTemp] = arr[index2];
-            ++index2;
+            ret.push_back(v2[i2]);
+            i2++;
         }
-        ++indexTemp;
     }
-    while (index1 <= mid) {
-        arrTemp[indexTemp] = arr[index1];
-        ++index1;
-        ++indexTemp;
-    }
-    while (index2 <= high) {
-        arrTemp[indexTemp] = arr[index2];
-        ++index2;
-        ++indexTemp;
-    }
+    if (i1 < v1Len)
+        ret.insert(ret.end(), v1.begin() + i1, v1.end());
+    else
+        ret.insert(ret.end(), v2.begin() + i2, v2.end());
 
-    for (int i = low; i <= high; ++i) {
-        arr[i] = arrTemp[i];
-    }
+    return ret;
 }
 
-void mSort(int low, int high)
+vector<int> mergeSort(int low, int high, vector<int>& nums)
 {
-    if (low < high) {
-        int mid = (high - low) / 2 + low;
-        mSort(low, mid);
-        mSort(mid+1, high);
-        mergeArray(low, mid, high);
-    }
+    if (low >= high)
+        return {nums[high]};
+
+    int mid = (low + high) / 2;
+    vector<int> left = mergeSort(low, mid, nums);
+    vector<int> right = mergeSort(mid+1, high, nums);
+    return mergeVec(left, right);
 }
 
 int main() {
+    vector<int> vec = {45, 2, 33, 44, 28, 19, 220, 99, 49, 50};
     cout << "Before sort: " << endl;
-    printArr(arr, 10);
-    mSort(0, 9);
+    printVec(vec);
+    vector<int> sortedNums = mergeSort(0, vec.size() - 1, vec);
     cout << "after sort: " << endl;
-    printArr(arr, 10);
+    printVec(sortedNums);
     return 0;
 }
