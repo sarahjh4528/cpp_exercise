@@ -9,8 +9,8 @@ To run:
 
     Options:
     -c  Clean executable and object file
-    -g  Compile debug version
-    -x  Generate executable file
+    -g  Compile main.cpp
+    -s  Compile sample.cpp
 
 HELP_EOT
 }
@@ -19,13 +19,13 @@ while getopts "cgx" option
 do
     case ${option} in
         c) echo "rm -f test *.o"
-            rm -f test *.o
+            rm -f *test* *.o
             ;;
-        g) echo "g++ -std=c++17 -g -Wall -Wextra main.cpp -o test"
-            g++ -std=c++17 -g -Wall -Wextra main.cpp -o test
+        g) echo "g++ -std=c++17 -g main.cpp -o test"
+            g++ -std=c++17 -g main.cpp -o test
             ;;
-        x) echo "g++ -std=c++17 -O2 -Wall -Wextra main.cpp -o test"
-            g++ -std=c++17 -O2 -Wall -Wextra main.cpp -o test
+        x) echo "g++ -std=c++17 -g sample.cpp -o stest"
+            g++ -std=c++17 -g sample.cpp -o stest
             ;;
         ?) _help
             ;;

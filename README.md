@@ -5,16 +5,21 @@ To compile:
 and copy the file from current dir over.
 2. Execute ~/bin/genX.sh. If file doesn't exist, copy from current to ~/bin.
 
-Misc notes:
-int : (-2^31 - 2^31-1) (-2 * 10^9 - 2 * 10^9 )
-long long : (-2^63 - 2^63-1) (-9 * 10^18 - 9 * 10^18 )
-
+# For now following parameters are not used.
 -02 : optimize code
 -Wall: show warnings about possible errors.
 -std=c++11 : c++ 11 standard
 -std=c++17 : c++ 17 standard
 
-* input size                          required time complexity *
+# Command to compile
+$ genX.sh -g (Compile and generate main.cpp, debug with "lldb test")
+$ genX.sh -s (Compile and generate sample.cpp, debug with "lldb stest")
+
+Misc notes:
+int : (-2^31 - 2^31-1) (-2 * 10^9 - 2 * 10^9 )
+long long : (-2^63 - 2^63-1) (-9 * 10^18 - 9 * 10^18 )
+
+* input size                        required time complexity *
 n≤10                                O(n!)
 n≤20O                               O(2n)
 n≤500O                              O(n3)
@@ -25,11 +30,11 @@ n is larger                         O(1) or O(log n)
 * Power of BITS *
 
 Numbers are stored as binary bits in the memory so bits manipulation are alway faster.
-Bitwise or operator    : |
-Bitwise and operator : &
-Bitwise xor operator  : ^
-Bitwise left shift         : <<
-Bitwise right shift      : >>
+Bitwise or operator     : |
+Bitwise and operator    : &
+Bitwise xor operator    : ^
+Bitwise left shift      : <<
+Bitwise right shift     : >>
 Memset and its uses using function : sizeof()
 Bitmask and use of Bitmask in Dynamic Programming [[subset DP]]
 `
