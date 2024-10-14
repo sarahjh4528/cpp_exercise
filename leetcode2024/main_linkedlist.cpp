@@ -17,6 +17,8 @@ struct ListNode {
 class Solution {
 public:
     ListNode *buildLinkedList(vector<int> nums) {
+        if (nums.size() == 0)
+            return NULL;
         ListNode *head = new ListNode(nums[0]);
         ListNode *cur = head;
         for (int i = 1; i < nums.size(); i++) {
