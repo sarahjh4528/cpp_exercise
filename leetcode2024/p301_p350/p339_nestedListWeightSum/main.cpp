@@ -1,7 +1,3 @@
-/*
-Runtime 0 ms Beats 100.00%
-Memory 12.56 MB Beats 14.39%
-*/
 
 
 /**
@@ -34,6 +30,11 @@ Memory 12.56 MB Beats 14.39%
  * };
  */
 class Solution {
+#if 0
+/*
+Runtime 0 ms Beats 100.00%
+Memory 12.56 MB Beats 14.39%
+*/
     void sumList(NestedInteger& ni, int& sum, int depth) {
         if (ni.isInteger()) {
             sum += ni.getInteger() * depth;
@@ -51,4 +52,25 @@ public:
         }
         return res;
     }
+#else
+/*
+Runtime 0 ms Beats 100.00%
+Memory 12.62 MB Beats 9.23%
+*/
+    void solve(vector<NestedInteger>& nl, int& res, int depth) {
+        for (auto ni : nl) {
+            if (ni.isInteger()) {
+                res += ni.getInteger() * depth;
+            } else {
+                solve(ni.getList(), res, depth+1);
+            }
+        }
+    }
+public:
+    int depthSum(vector<NestedInteger>& nestedList) {
+        int res = 0;
+        solve(nestedList, res, 1);
+        return res;
+    }
+#endif
 };
