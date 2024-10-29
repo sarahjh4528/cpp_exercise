@@ -17,7 +17,7 @@ Memory 12.23 MB Beats 86.96%
 */
     string minRemoveToMakeValid(string s) {
         string res = "";
-        int left = 0;
+        int left = 0;       // count '('
         for (auto c : s) {
             if (c == '(') {
                 left++;
