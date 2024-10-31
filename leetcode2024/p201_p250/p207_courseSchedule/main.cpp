@@ -12,34 +12,39 @@ public:
         cout << endl;
     }
 
+/*
+Runtime 10 ms Beats 30.18%
+Memory 20.46 MB Beats 17.46
+
+Same design as fastest solution
+*/
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        if (prerequisites.size() == 0)
+        int plen = prerequisites.size();
+        if (plen <= 1)
             return true;
-
-        unordered_map<int, vector<int>> cmap;
-        vector<int> degree(numCourses, 0);
-        vector<int> ans;
-
-        for (auto pres : prerequisites) {
-            cmap[pres[1]].push_back(pres[0]);   // Save all courses that needs pres[1]
-            degree[pres[0]]++;                  // Courses to take before taking pres[0]
+        unordered_map<int, vector<int>> preMap; // precourse for list of courses
+        vector<int> degree(numCourses, 0);    // Pre course num for course i
+        for (auto pr : prerequisites) {
+            preMap[pr[1]].push_back(pr[0]);
+            degree[pr[0]]++;
         }
-        queue<int> q;   // Save courses can be taken
+        int taken = 0;
+        queue<int> q;
         for (int i = 0; i < numCourses; i++) {
             if (degree[i] == 0)
-                q.push(i);
+                q.push(i);  // Push courses without prerequisite
         }
         while (!q.empty()) {
-            int take = q.front();
+            int course = q.front();
             q.pop();
-            ans.push_back(take);
-            for (auto toTake : cmap[take]) {
-                degree[toTake]--;
-                if (degree[toTake] == 0)
-                    q.push(toTake);
-            }
+            taken++;
+            for (auto cl : preMap[course]) {
+                degree[cl]--;
+                if (degree[cl] == 0)
+                    q.push(cl);
+            }               
         }
-        return ans.size() == numCourses;
+        return taken == numCourses;
     }
 };
 
