@@ -12,33 +12,24 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Solution {
 /*
-Runtime 12 ms Beats 96.41%
-Memory 66.10 MB Beats 5.49%
+Runtime 0 ms Beats 100.00%
+Memory 63.29 MB Beats 66.86%
 */
-    void dfs(TreeNode *root, stack<TreeNode*>& st, int high) {
+class Solution {
+    void dfs(TreeNode* root, int low, int high, int& res) {
         if (!root)
             return;
-        dfs(root->left, st, high);
-        if (root->val > high)
-            return;
-        st.push(root);
-        dfs(root->right, st, high);
+        if (root->val >= low && root->val <= high)
+            res += root->val;
+        dfs(root->left, low, high, res);
+        dfs(root->right, low, high, res);
     }
 public:
     int rangeSumBST(TreeNode* root, int low, int high) {
-        stack<TreeNode*> st;
-        dfs(root, st, high);
-        int sum = 0;
-        bool inRange = false;
-        while (!st.empty()) {
-            TreeNode *cur = st.top();
-            st.pop();
-            if (cur->val >= low)
-                sum += cur->val;
-        }
-        return sum;
+        int res = 0;
+        dfs(root, low, high, res);
+        return res;
     }
 #if 0
 Sample fastest code
