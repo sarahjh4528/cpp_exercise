@@ -1,25 +1,39 @@
 /*
-Runtime 2 ms Beats 89.86%
-Memory 9.66 MB Beats 11.81%
-Same design as fastest solution
+Runtime 0 ms Beats 100.00%
+Memory 8.69 MB Beats 98.80%
 */
+
 #include<bits/stdc++.h>
 #include<iostream>
 
 using namespace std;
 
 class Solution {
+    bool validchar(char c) {
+        return (isdigit(c) || isalpha(c));
+    }
 public:
     bool isPalindrome(string s) {
-        string str1 = "", str2 = "";
-        for (auto c : s) {
-            if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')) {
-                str1 += tolower(c);
+        int slen = s.length();
+        if (slen == 1)
+            return true;
+        int left = 0, right = slen-1;
+        while (left < right) {
+            if (!validchar(s[left])) {
+                left++;
+                continue;
             }
+            if (!validchar(s[right])) {
+                right--;
+                continue;
+            }
+            if (tolower(s[left]) != tolower(s[right]))
+                return false;
+
+            left++;
+            right--;
         }
-        str2 = str1;
-        reverse(str2.begin(), str2.end());
-        return (str1 == str2);
+        return true;
     }
 };
 
@@ -28,7 +42,8 @@ int main()
     vector<string> input = {
         "A man, a plan, a canal: Panama",
         "race a car",
-        " "
+        " ",
+        ".,"
     };
     Solution s;
 

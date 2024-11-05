@@ -1,7 +1,3 @@
-/*
-Runtime 0 ms Beats 100.00%
-Memory 14.79 MB Beats 81.06%
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -16,18 +12,7 @@ public:
     }
 
     void nextPermutation(vector<int>& nums) {
-        int n = nums.size();
-        int tp = n - 2;
-        while (tp >= 0 && nums[tp] >= nums[tp+1])
-            tp--;
-        if (tp >= 0) {
-            int sp = n - 1;
-            while (sp > tp && nums[sp] <= nums[tp])
-                sp--;
-            swap(nums[tp], nums[sp]);
-        }
-        
-        reverse(nums.begin()+tp+1, nums.end());
+    
     }
 };
 
