@@ -1,7 +1,3 @@
-/*
-Runtime 0 ms Beats 100.00%
-Memory 8.03 MB Beats 10.23%
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 #include<stack>
@@ -16,6 +12,11 @@ public:
         cout << endl;
     }
 
+#if 0
+/*
+Runtime 0 ms Beats 100.00%
+Memory 8.03 MB Beats 10.23%
+*/
     int minAddToMakeValid(string s) {
         stack<char> st;
         for (auto c : s) {
@@ -27,7 +28,26 @@ public:
         }
         return st.size();
     }
+#else
+/*
+Runtime 0 ms Beats 100.00%
+Memory 7.71 MB Beats 73.35%
+*/
 
+    int minAddToMakeValid(string s) {
+        int open = 0, minmove = 0;
+        for (auto c : s) {
+            if (c == '(') {
+                open++;
+            } else if (c == ')' && open > 0) {
+                open--;
+            } else {
+                minmove++;
+            }
+        }
+        return open+minmove;
+    }
+#endif
 };
 
 int main()
