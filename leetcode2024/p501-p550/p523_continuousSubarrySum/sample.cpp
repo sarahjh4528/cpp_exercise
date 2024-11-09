@@ -27,26 +27,8 @@ To get sum divisible by 5 => rangeSum % 5 = 0
 RangeSum % 5 = 0 => (prefix(b) - prefix(a)) % 5 = 0 => prefix(a)%5 - prefix(b)%5 = 0
 
 Therefore we're looking for prefix(b)%5 = prefix(a)%5
-
-Runtime 84 ms Beats 41.24%
-Memory 146.16 MB Beats 86.12%
-
-Same design as tutorial
 */
     bool checkSubarraySum(vector<int>& nums, int k) {
-        unordered_map<int, int> nmap;
-        nmap[0] = -1;
-        int sum = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            sum += nums[i];
-            int key = sum % k;
-            if (nmap.count(key)) {
-                if (nmap[key] != i)
-                    return true;
-            }
-            nmap[key] = i;
-        }
-        return false;
     }
 };
 

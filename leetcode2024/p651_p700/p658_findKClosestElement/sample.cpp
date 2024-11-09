@@ -1,7 +1,3 @@
-/*
-Runtime 0 ms Beats 100.00%
-Memory 33.72 MB Beats 95.50%
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -29,16 +25,6 @@ If mid is closer, move high to mid, if mid+k is closer, move low to mid+1 (mid i
 
 */
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
-        int low = 0, high = arr.size()-k;
-        while (low < high) {
-            int mid = (high + low) / 2;
-            if (x - arr[mid] <= arr[mid+k] - x)
-                high = mid;
-            else
-                low = mid + 1;
-        }
-        vector<int> res(arr.begin()+low, arr.begin()+low+k);
-        return res;
     }
 };
 
