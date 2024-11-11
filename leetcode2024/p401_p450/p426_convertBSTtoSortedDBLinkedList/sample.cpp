@@ -39,32 +39,6 @@ public:
     }
 
     Node* treeToDoublyList(Node* root) {
-        if (!root)
-            return NULL;
-        Node dummy;
-        Node *prev = &dummy, *cur = root;
-        stack<Node*> st;
-        while (cur) {
-            st.push(cur);
-            cur = cur->left;
-        }
-        while (!st.empty()) {
-            Node *cur = st.top();
-            st.pop();
-            prev->right = cur;
-            cur->left = prev;
-            prev = cur;
-            if (cur->right) {
-                cur = cur->right;
-                while (cur) {
-                    st.push(cur);
-                    cur = cur->left;
-                }
-            }
-        }
-        prev->right = root;
-        root->left = prev;
-        return dummy.right;
     }
 
 };
