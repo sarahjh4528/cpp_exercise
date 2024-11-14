@@ -49,51 +49,7 @@ public:
     
 #endif
 
-/*
-Runtime 0 ms Beats 100.00%
-Memory 13.60 MB Beats 99.40%
-
-Time Complexity: O(Nlog(N/k)))), where k is the width of the tree,
-i.e. k is also the number of columns in the result.
-
-1st step, O(N)
-
-2nd step, sort the hashmap entry by entry. Sorting k equal-sized subgroups
-of with total N elements would be O(k⋅N/k(logN/k))
-3rd step. O(N) to extract the results from the hashmap.
-*/
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        map<int, vector<pair<int, int>>> tmap;  // col : <col, val>
-        queue<pair<TreeNode*, int>> q;          // BFS, <treenode, col>
-        q.push(make_pair(root, 0));
-        int row = 0;
-        while (!q.empty()) {
-            int qsize = q.size();               // Current level nodes
-            for (int i = 0; i < qsize; i++) {
-                auto [cur, ni] = q.front();
-                q.pop();
-                tmap[ni].push_back(make_pair(row, cur->val));
-                if (cur->left)
-                    q.push(make_pair(cur->left, ni-1));
-                if (cur->right)
-                    q.push(make_pair(cur->right, ni+1));
-            }
-            row++;
-        }
-        vector<vector<int>> res;
-        for (auto it = tmap.begin(); it != tmap.end(); it++) {
-            auto& v = it->second;
-            sort(v.begin(), v.end(), [&](auto n1, auto n2) {
-                if (n1.first == n2.first)
-                    return n1.second < n2.second;
-                return n1.first < n2.first;
-            });
-            vector<int> curV;
-            for (auto n : v)
-                curV.push_back(n.second);
-            res.push_back(curV);
-        }
-        return res;
     }
 
 };
