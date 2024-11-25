@@ -3,43 +3,39 @@
 #include<list>
 
 using namespace std;
-/*
-Runtime 99 ms Beats 96.08%
-Memory 185.86 MB Beats 7.00%
-*/
+
 class LRUCache {
     int size;
-    unordered_map<int, list<pair<int, int>>::iterator> map; // key : [key, val]::iterator
-    list<pair<int, int>> lru;   // [key, val], push_back, erase from front()
+    list<pair<int, int>> lru;
+    unordered_map<int, list<pair<int, int>>::iterator> lmap;
 public:
     LRUCache(int capacity) {
         size = capacity;
     }
-    
+   
     int get(int key) {
-        if (!map.count(key))
+        if (!lmap.count(key))
             return -1;
-        auto it = map[key];
+
+        auto it = lmap[key];
         int val = it->second;
         lru.erase(it);
-        lru.push_back({key, val});
-        map[key] = prev(lru.end());
-
+        lru.push_back(make_pair(key, val));
+        lmap[key] = prev(lru.end());
         return val;
-            
     }
-    
+   
     void put(int key, int value) {
-        if (map.count(key)) {
-            auto it = map[key];
+        if (lmap.count(key)) {
+            auto it = lmap[key];
             lru.erase(it);
         } else if (lru.size() == size) {
-            auto tmp = lru.front();
-            map.erase(tmp.first);
-            lru.pop_front();
+            auto it = lru.front();
+            lru.erase(lmap[it.first]);
+            lmap.erase(it.first);
         }
-        lru.push_back({key, value});
-        map[key] = prev(lru.end());
+        lru.push_back(make_pair(key, value));
+        lmap[key] = prev(lru.end());
     }
 };
 
