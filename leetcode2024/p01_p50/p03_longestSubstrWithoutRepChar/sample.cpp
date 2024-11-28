@@ -1,7 +1,3 @@
-/*
-Runtime 7 ms Beats 73.25%
-Memory 12.00 MB Beats 58.66%
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -16,15 +12,6 @@ public:
     }
 
     int lengthOfLongestSubstring(string s) {
-        int res = 0, start = 0;
-        unordered_map<char, int> cmap;
-        for (int i = 0; i < s.length(); i++) {
-            if (cmap.count(s[i]) && cmap[s[i]] >= start)
-                start = cmap[s[i]] + 1;
-            res = max(res, i - start + 1);
-            cmap[s[i]] = i;
-        }
-        return res;
     }
 };
 
