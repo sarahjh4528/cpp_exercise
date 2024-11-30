@@ -1,8 +1,9 @@
 /*
-Runtime 0 ms Beats 100.00%
-Memory 8.69 MB Beats 98.80%
-*/
+Constraints:
 
+1 <= s.length <= 2 * 10^5
+s consists only of printable ASCII characters.
+*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -11,18 +12,6 @@ using namespace std;
 class Solution {
 public:
     bool isPalindrome(string s) {
-        int l = 0, r = s.length()-1;
-        while (l < r) {
-            if (!isalnum(s[l]))
-                l++;
-            else if (!isalnum(s[r]))
-                r--;
-            else {
-                if (tolower(s[l++]) != tolower(s[r--]))
-                    return false;
-            }
-        }
-        return true;
     }
 };
 
