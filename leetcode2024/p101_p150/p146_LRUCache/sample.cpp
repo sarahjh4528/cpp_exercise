@@ -1,3 +1,11 @@
+/*
+Constraints:
+
+1 <= capacity <= 3000
+0 <= key <= 10^4
+0 <= value <= 10^5
+At most 2 * 10^5 calls will be made to get and put.
+*/
 #include<bits/stdc++.h>
 #include<iostream>
 #include<list>
@@ -5,37 +13,14 @@
 using namespace std;
 
 class LRUCache {
-    int size;
-    list<pair<int, int>> lru;
-    unordered_map<int, list<pair<int, int>>::iterator> lmap;
 public:
     LRUCache(int capacity) {
-        size = capacity;
     }
    
     int get(int key) {
-        if (!lmap.count(key))
-            return -1;
-
-        auto it = lmap[key];
-        int val = it->second;
-        lru.erase(it);
-        lru.push_back(make_pair(key, val));
-        lmap[key] = prev(lru.end());
-        return val;
     }
    
     void put(int key, int value) {
-        if (lmap.count(key)) {
-            auto it = lmap[key];
-            lru.erase(it);
-        } else if (lru.size() == size) {
-            auto it = lru.front();
-            lru.erase(lmap[it.first]);
-            lmap.erase(it.first);
-        }
-        lru.push_back(make_pair(key, value));
-        lmap[key] = prev(lru.end());
     }
 };
 

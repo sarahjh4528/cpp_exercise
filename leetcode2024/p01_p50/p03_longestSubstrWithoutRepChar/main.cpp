@@ -19,10 +19,10 @@ public:
         int res = 0, start = 0;
         unordered_map<char, int> cmap;
         for (int i = 0; i < s.length(); i++) {
-            if (cmap.count(s[i]) && cmap[s[i]] >= start)
-                start = cmap[s[i]] + 1;
-            res = max(res, i - start + 1);
+            if (cmap.count(s[i]))
+                start = max(start, cmap[s[i]] + 1);
             cmap[s[i]] = i;
+            res = max(res, i - start + 1);
         }
         return res;
     }

@@ -39,7 +39,7 @@ public:
 
 int main() {
     Solution s;
-    vector<string> vs = { "babad", "cbbd" };
+    vector<string> vs = { "babad", "cbbd", "abacab" };
 
     for (auto str : vs) {
         cout << "Input : " << endl;
