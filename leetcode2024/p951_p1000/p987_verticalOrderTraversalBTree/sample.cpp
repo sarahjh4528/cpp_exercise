@@ -1,3 +1,9 @@
+/*
+Constraints:
+
+The number of nodes in the tree is in the range [1, 1000].
+0 <= Node.val <= 1000
+*/
 #include<bits/stdc++.h>
 #include<iostream>
 #include<map>

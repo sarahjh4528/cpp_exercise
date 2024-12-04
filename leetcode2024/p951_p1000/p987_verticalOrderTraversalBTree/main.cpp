@@ -63,12 +63,12 @@ of with total N elements would be O(k⋅N/k(logN/k))
 3rd step. O(N) to extract the results from the hashmap.
 */
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        map<int, vector<pair<int, int>>> tmap;  // col : <col, val>
-        queue<pair<TreeNode*, int>> q;          // BFS, <treenode, col>
+        map<int, vector<pair<int, int>>> tmap;  // col : [row, val]
+        queue<pair<TreeNode*, int>> q;          // [TreeNode*, col]
         q.push(make_pair(root, 0));
         int row = 0;
         while (!q.empty()) {
-            int qsize = q.size();               // Current level nodes
+            int qsize = q.size();
             for (int i = 0; i < qsize; i++) {
                 auto [cur, ni] = q.front();
                 q.pop();
@@ -95,7 +95,6 @@ of with total N elements would be O(k⋅N/k(logN/k))
         }
         return res;
     }
-
 };
 
 int main()
