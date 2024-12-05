@@ -1,33 +1,20 @@
+/*
+Constraints:
+
+-100.0 < x < 100.0
+-2^31 <= n <= 2^31-1
+n is an integer.
+Either x is not zero or n > 0.
+-10^4 <= x^n <= 10^4
+*/
 #include<bits/stdc++.h>
 #include<iostream>
 
 using namespace std;
 
 class Solution {
-    double powHelper(double x, long long n) {
-        if (n < 0) {
-            x = (double)1 / x;
-            n = -n;
-        }
-
-        double res = 1;
-        while (n > 0) {
-            if (n % 2 == 1) {
-                res *= x;
-                n--;
-            }
-            x = x*x;
-            n /= 2;
-        }
-        return res;
-    } 
 public:
     double myPow(double x, int n) {
-        if (x == 1.0 || n == 0)
-            return 1.0;
-        if (n == 1)
-            return x;
-        return powHelper(x, (long long)n);
     }
 };
 
