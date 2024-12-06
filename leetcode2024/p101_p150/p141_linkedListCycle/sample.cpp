@@ -1,3 +1,11 @@
+/*
+Constraints:
+
+The number of the nodes in the list is in the range [0, 10^4].
+-10^5 <= Node.val <= 10^5
+pos is -1 or a valid index in the linked-list.
+
+*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -36,23 +44,10 @@ public:
         }
         cout << endl;
     }
-/*
-Runtime 6 ms Beats 90.31%
-Memory 11.66 MB Beats 25.70%
-Time : O(N)
-Space : O(1)
-*/
 
     bool hasCycle(ListNode *head) {
-        if (!head)
-            return false;
-        ListNode *slow = head, *fast = head->next;
-        while (fast && fast->next && slow != fast) {
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-        return !(fast == NULL || fast->next == NULL);
     }
+
 };
 
 int main()

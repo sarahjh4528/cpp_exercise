@@ -1,3 +1,11 @@
+/*
+Constraints:
+
+m == grid.length
+n == grid[i].length
+1 <= m, n <= 10
+grid[i][j] is 0, 1, or 2.
+*/
 #include<bits/stdc++.h>
 #include<iostream>
 #include<queue>
@@ -24,7 +32,7 @@ int main()
     vector<vector<int>> grid = { {2,1,1},{0,1,1},{1,0,1} };
     vector<vector<int>> grid = { {0,2} };
 #endif
-    vector<vector<int>> grid = { {0,2} };
+    vector<vector<int>> grid = { {2,1,1},{1,1,0},{0,1,1} };
     Solution s;
 
     int output = s.orangesRotting(grid);

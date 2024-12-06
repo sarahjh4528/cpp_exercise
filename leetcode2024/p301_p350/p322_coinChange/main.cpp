@@ -19,11 +19,11 @@ public:
     }
 
 /*
-Runtime 18 ms Beats 86.22%
-Memory 16.17 MB Beats 91.14%
+Runtime 15 ms Beats 93.03%
+Memory 17.98 MB Beats 49.62%
 
-Same solution as fastest
-(Sort coins, and break when i-n<0 runs slower than not sorting in this case)
+Time: O(N*12), N(amount), 12: coins => O(N)
+Space: O(N)
 */
     int coinChange(vector<int>& coins, int amount) {
         vector<int> dp(amount+1, amount+1);

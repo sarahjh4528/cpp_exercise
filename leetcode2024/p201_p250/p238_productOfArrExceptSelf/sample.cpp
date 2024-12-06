@@ -1,6 +1,9 @@
 /*
-1 <= nums.length() <= 50,000
-0 <= nums[i] <= 49,999
+Constraints:
+
+2 <= nums.length <= 10^5
+-30 <= nums[i] <= 30
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 */
 #include<bits/stdc++.h>
 #include<iostream>
@@ -15,22 +18,23 @@ public:
         cout << endl;
     }
 
-    int findShortestSubArray(vector<int>& nums) {
+    vector<int> productExceptSelf(vector<int>& nums) {
     }
 };
 
 int main()
 {
     vector<vector<int>> vnums = {
-        {1,2,2,3,1},
-        {1,2,2,3,1,4,2}
+        {1,2,3,4},
+        {-1,1,0,-3,3}
     };
     Solution s;
 
     for (auto nums : vnums) {
         s.printVec(nums);
-        int output = s.findShortestSubArray(nums);
-        cout << "Max freq of element with shortest length: " << output << endl;
+        vector<int> output = s.productExceptSelf(nums);
+        cout << "Prod except self: " << endl;
+        s.printVec(output);
     }
     return 0;
 }

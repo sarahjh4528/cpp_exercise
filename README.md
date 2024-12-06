@@ -20,12 +20,12 @@ int : (-2^31 - 2^31-1) (-2 * 10^9 - 2 * 10^9 )
 long long : (-2^63 - 2^63-1) (-9 * 10^18 - 9 * 10^18 )
 
 * input size                        required time complexity *
-n≤10                                O(n!)
-n≤20O                               O(2n)
-n≤500O                              O(n3)
-n≤5000                              O(n2)
-n≤10^6                              O(n log n) or O(n)
-n is larger                         O(1) or O(log n)
+n ≤ 10                                O(n!)
+n ≤ 20O                               O(2n)
+n ≤ 50O                               O(n3)
+n ≤ 5000                              O(n2)
+n ≤ 10^6                              O(n log n) or O(n)
+n is larger                           O(1) or O(log n)
 
 * Power of BITS *
 
