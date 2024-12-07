@@ -1,8 +1,11 @@
 /*
 Constraints:
 
-The number of nodes in the list is the range [0, 5000].
--5000 <= Node.val <= 5000
+The number of nodes in the list is n.
+1 <= n <= 500
+-500 <= Node.val <= 500
+1 <= left <= right <= n
+
 */
 #include<bits/stdc++.h>
 #include<iostream>
@@ -41,42 +44,42 @@ public:
         }
         cout << endl;
     }
+
 /*
 Runtime 0 ms Beats 100.00%
-Memory 13.27 MB Beats 18.88%
+Memory 11.15 MB Beats 8.83%
 */
-    ListNode* reverseList(ListNode* head) {
-        if (!head || !head->next)
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if (!head->next || left == right)
             return head;
 
-        ListNode *n1 = head, *n2 = n1->next, *tmp;
-        n1->next = NULL;
-        while (n2) {
+        ListNode dummy;
+        dummy.next = head;
+        ListNode *prev = &dummy;
+        for (int i = 1; i < left; i++)
+            prev = prev->next;
+
+        ListNode *n1 = prev->next, *n2 = n1->next, *tmp;
+        for (int i = 0; i < right - left; i++) {
             tmp = n2->next;
             n2->next = n1;
             n1 = n2;
             n2 = tmp;
         }
-        return n1;
+        prev->next->next = n2;
+        prev->next = n1;
+        return dummy.next;
     }
 };
 
 int main()
 {
-    vector<vector<int>> vn = {
-        {1,2,3,4,5},
-        {1,2},
-        {}
-    };
+    
     Solution s;
 
-    for (auto nums : vn) {
-        ListNode *head = s.buildLinkedList(nums);
-        s.printList(head);
-        ListNode *output = s.reverseList(head);
-        cout << "After reverse. " << endl;
-        s.printList(output);
-    }
+    vector<int> input = {...};
+    ListNode *head = s.buildLinkedList(input);
+    s.printList(head);
 
     return 0;
 }

@@ -1,9 +1,3 @@
-/*
-Constraints:
-
-The number of nodes in the list is the range [0, 5000].
--5000 <= Node.val <= 5000
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -41,40 +35,47 @@ public:
         }
         cout << endl;
     }
-/*
-Runtime 0 ms Beats 100.00%
-Memory 13.27 MB Beats 18.88%
-*/
-    ListNode* reverseList(ListNode* head) {
-        if (!head || !head->next)
-            return head;
 
-        ListNode *n1 = head, *n2 = n1->next, *tmp;
-        n1->next = NULL;
-        while (n2) {
-            tmp = n2->next;
-            n2->next = n1;
-            n1 = n2;
-            n2 = tmp;
+/*
+Runtime 3 ms Beats 12.31%
+Memory 20.35 MB Beats 7.53%
+
+Same solution as fastest. Fastest solution doesn't delete removed elements.
+*/
+    ListNode* removeElements(ListNode* head, int val) {
+        if (!head)
+            return NULL;
+
+        ListNode dummy;
+        dummy.next = head;
+        ListNode *cur = &dummy;
+        while (cur->next) {
+            if (cur->next->val == val) {
+                ListNode *tmp = cur->next;
+                cur->next = cur->next->next;
+                delete(tmp);
+            } else {
+                cur = cur->next;
+            }
         }
-        return n1;
+        return dummy.next;
     }
 };
 
 int main()
 {
-    vector<vector<int>> vn = {
-        {1,2,3,4,5},
-        {1,2},
-        {}
+    vector<vector<int>> vnums = {
+        {1,2,6,3,4,5,6},
+        {},
+        {7,7,7,7}
     };
+    vector<int> vals = {6, 1, 7};
     Solution s;
 
-    for (auto nums : vn) {
-        ListNode *head = s.buildLinkedList(nums);
+    for (int i = 0; i < vals.size(); i++) {
+        ListNode *head = s.buildLinkedList(vnums[i]);
         s.printList(head);
-        ListNode *output = s.reverseList(head);
-        cout << "After reverse. " << endl;
+        ListNode *output = s.removeElements(head, vals[i]);
         s.printList(output);
     }
 
