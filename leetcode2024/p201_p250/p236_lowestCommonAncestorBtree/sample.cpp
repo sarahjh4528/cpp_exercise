@@ -37,6 +37,16 @@ public:
     }
 #endif
 
+/*
+Constraints:
+
+The number of nodes in the tree is in the range [2, 105].
+-10^9 <= Node.val <= 10^9
+All Node.val are unique.
+p != q
+p and q will exist in the tree.
+
+*/
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if (!root)
             return NULL;
@@ -45,11 +55,11 @@ public:
 
         TreeNode *left = lowestCommonAncestor(root->left, p, q);
         TreeNode *right = lowestCommonAncestor(root->right, p, q);
-
         if (left && right)
             return root;
 
         return (left)? left : right;
+        
     }
 
 };

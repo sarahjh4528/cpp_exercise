@@ -44,18 +44,19 @@ Memory 29.97 MB Beats 15.68%
         return res;
     }
 #else
+/*
+Runtime 14 ms Beats 82.84%
+Memory 24.91 MB Beats 64.83%
+*/
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        unordered_map<string, vector<string>> map;
+        unordered_map<string, vector<string>> smap;
         for (auto str : strs) {
-            string tmp = str;
-            sort(tmp.begin(), tmp.end());
-            if (map.count(tmp))
-                map[tmp].push_back(str);
-            else
-                map[tmp] = {str};
+            string key = str;
+            sort(key.begin(), key.end());
+            smap[key].push_back(str);
         }
         vector<vector<string>> res;
-        for (auto it = map.begin(); it != map.end(); it++)
+        for (auto it = smap.begin(); it != smap.end(); it++)
             res.push_back(it->second);
         return res;
     }

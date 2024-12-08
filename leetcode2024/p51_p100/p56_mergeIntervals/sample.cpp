@@ -29,7 +29,7 @@ int main()
     vector<vector<int>> intervals = { {1,4},{4,5} };
 #endif
     Solution s;
-    vector<vector<int>> intervals = { {1,4},{4,5} };
+    vector<vector<int>> intervals = { {1,3},{2,6},{8,10},{15,18} };
 
     for (auto v : intervals)
         s.printVec(v);

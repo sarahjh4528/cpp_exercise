@@ -26,7 +26,6 @@ public:
         map[key] = prev(lru.end());
 
         return val;
-            
     }
     
     void put(int key, int value) {
@@ -34,8 +33,8 @@ public:
             auto it = map[key];
             lru.erase(it);
         } else if (lru.size() == size) {
-            auto tmp = lru.front();
-            map.erase(tmp.first);
+            auto [k,v] = lru.front();
+            map.erase(k);
             lru.pop_front();
         }
         lru.push_back({key, value});

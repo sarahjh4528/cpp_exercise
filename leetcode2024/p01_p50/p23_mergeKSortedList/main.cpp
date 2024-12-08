@@ -19,9 +19,9 @@ struct ListNode {
 };
 
 class Solution {
-    void merge2Lists(ListNode *l1, ListNode *l2) {
+    ListNode* merge2Lists(ListNode *l1, ListNode *l2) {
         ListNode dummy;
-        ListNode *lead = &dummy, *cur = lead;
+        ListNode *cur = &dummy;
         while (l1 && l2) {
             if (l1->val < l2->val) {
                 cur->next = l1;
@@ -36,7 +36,7 @@ class Solution {
             cur->next = l1;
         else
             cur->next = l2;
-        l1 = lead->next;
+        return dummy.next;
     }
 
 public:
@@ -68,7 +68,7 @@ public:
         int steps = 1;
         while (steps < n) {
             for (int i = 0; i < n-steps; i += (steps<<1))
-                merge2Lists(lists[i], lists[i+steps]);
+                lists[i] = merge2Lists(lists[i], lists[i+steps]);
             steps <<= 1;
         }
         return lists[0];

@@ -11,6 +11,15 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 using namespace std;
 
 class Solution {
+    unordered_map<char, int> smap = {
+        {'I', 1},
+        {'V', 5},
+        {'X', 10},
+        {'L', 50},
+        {'C', 100},
+        {'D', 500},
+        {'M', 1000}
+    };
 public:
     void printVec(vector<int>& v) {
         for (auto i : v)

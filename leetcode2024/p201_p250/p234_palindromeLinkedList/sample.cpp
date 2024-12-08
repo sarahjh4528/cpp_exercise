@@ -1,11 +1,6 @@
-/*
-Constraints:
-
-The number of nodes in the list is the range [0, 5000].
--5000 <= Node.val <= 5000
-*/
 #include<bits/stdc++.h>
 #include<iostream>
+#include<stack>
 
 using namespace std;
 
@@ -42,36 +37,29 @@ public:
         cout << endl;
     }
 
-    ListNode* reverseList(ListNode* head) {
-        if (!head || !head->next)
-            return head;
-        ListNode *n1 = head, *n2 = head->next, *n3;
-        n1->next = NULL;
-        while (n2) {
-            n3 = n2->next;
-            n2->next = n1;
-            n1 = n2;
-            n2 = n3;
-        }
-        return n1;
+/*
+Constraints:
+
+The number of nodes in the list is in the range [1, 10^5].
+0 <= Node.val <= 9
+*/
+    bool isPalindrome(ListNode* head) {
     }
 };
 
 int main()
 {
-    vector<vector<int>> vn = {
-        {1,2,3,4,5},
-        {1,2},
-        {}
-    };
     Solution s;
+    vector<vector<int>> input = {
+        {1,2,2,1},
+        {1,2}
+    };
 
-    for (auto nums : vn) {
+    for (auto nums : input) {
         ListNode *head = s.buildLinkedList(nums);
         s.printList(head);
-        ListNode *output = s.reverseList(head);
-        cout << "After reverse. " << endl;
-        s.printList(output);
+        bool output = s.isPalindrome(head);
+        cout << "Is palindrome: " << output << endl;
     }
 
     return 0;

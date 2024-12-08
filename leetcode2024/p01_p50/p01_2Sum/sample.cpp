@@ -19,14 +19,6 @@ Constraints:
 -10^9 <= target <= 10^9
 */
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> nmap;
-        for (int i = 0; i < nums.size(); i++) {
-            if (nmap.count(nums[i]))
-                return {nmap[nums[i]], i};
-            else
-                nmap[target - nums[i]] = i;
-        }
-        return {};
     }
 };
 

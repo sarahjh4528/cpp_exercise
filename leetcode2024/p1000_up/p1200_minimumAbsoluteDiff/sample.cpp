@@ -14,7 +14,7 @@ public:
     void printVec(vector<int>& v) {
         for (auto i : v)
             cout << i << " ";
-        cout << endl;
+        cout << " , ";
     }
 
     vector<vector<int>> minimumAbsDifference(vector<int>& arr) {
@@ -37,6 +37,7 @@ int main()
         cout << "Min diff pairs: " << endl;
         for (auto v : output)
             s.printVec(v);
+        cout << endl;
     }
 
     return 0;
