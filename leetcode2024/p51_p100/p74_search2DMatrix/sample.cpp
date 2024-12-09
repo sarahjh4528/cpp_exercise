@@ -26,14 +26,14 @@ public:
 int main()
 {
 #if 0
-    vector<vector<int>> matrix = {
-        {1,3,5,7},{10,11,16,20},{23,30,34,60}
-    };
+    vector<vector<int>> matrix = { {1,3,5,7},{10,11,16,20},{23,30,34,60} };
     vector<int> vt = {3, 13};
-#endif
     vector<vector<int>> matrix = { {1,1} };
     vector<int> vt = {2};
+#endif
     Solution s;
+    vector<vector<int>> matrix = { {1,3,5,7},{10,11,16,20},{23,30,34,60} };
+    vector<int> vt = {3, 13};
 
     for (auto row : matrix)
         s.printVec(row);

@@ -35,7 +35,7 @@ int main()
     vector<vector<int>> matrix = { {1,1,1},{1,0,1},{1,1,1} };
     vector<vector<int>> matrix = { {0,1,2,0},{3,4,5,2},{1,3,1,5} };
 #endif
-    vector<vector<int>> matrix = { {0,1,2,0},{3,4,5,2},{1,3,1,5} };
+    vector<vector<int>> matrix = { {1,1,1},{1,0,1},{1,1,1} };
     Solution s;
 
     s.setZeroes(matrix);

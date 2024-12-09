@@ -13,6 +13,8 @@ Either x is not zero or n > 0.
 using namespace std;
 
 class Solution {
+    double powHelper(double x, long long n) {
+    }
 public:
     double myPow(double x, int n) {
     }
