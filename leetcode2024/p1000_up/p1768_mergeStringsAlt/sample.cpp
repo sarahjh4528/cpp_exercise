@@ -1,7 +1,3 @@
-/*
-Runtime 0 ms Beats 100.00%
-Memory 9.22 MB Beats 6.99%
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -16,17 +12,6 @@ public:
     }
 
     string mergeAlternately(string word1, string word2) {
-        int i = 0, len1 = word1.length(), len2 = word2.length();
-        string res = "";
-        while (i < len1 && i < len2) {
-            res = res + word1[i] + word2[i];
-            i++;
-        }
-        if (i < len1)
-            res += word1.substr(i);
-        else if (i < len2)
-            res += word2.substr(i);
-        return res;
     }
 };
 
