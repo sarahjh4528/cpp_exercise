@@ -16,22 +16,7 @@ public:
 0 <= t.length <= 10^4
 s and t consist only of lowercase English letters.
 */
-/*
-Runtime 0 ms Beats 100.00%
-Memory 8.42 MB Beats 75.59%
-
-Time: O(n), n: len of t
-Space: O(1)
-*/
     bool isSubsequence(string s, string t) {
-        int i = 0, j = 0;
-        int slen = s.length(), tlen = t.length();
-        while (i < slen && j < tlen) {
-            if (s[i] == t[j])
-                i++;
-            j++;
-        }
-        return i == slen;
     }
 };
 
