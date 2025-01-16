@@ -1,7 +1,3 @@
-/*
-Runtime 3 ms Beats 93.48%
-Memory 58.26 MB Beats 16.18%
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -15,21 +11,30 @@ public:
         cout << endl;
     }
 
+/*
+1 <= nums.length <= 10^5
+nums[i] is either 0 or 1.
+0 <= k <= nums.length
+*/
+/*
+Runtime 0 ms Beats 100.00%
+Memory 59.06 MB Beats 84.11%
+
+Time: O(N), Space: O(1)
+*/
     int longestOnes(vector<int>& nums, int k) {
-        int res = 0, zeros = 0, low = 0, high = 0;
-        while (high < nums.size()) {
+        int res = 0, low = 0, high;
+        for (high = 0; high < nums.size(); high++) {
             if (nums[high] == 0)
-                zeros++;
-            if (zeros <= k)
-                res = max(res, high-low+1);
-            else {
+                k--;
+            if (k < 0) { // Got a window, slide same size window to right,
+                         // until k >= 0, with right keeps moving, we're able to get bigger window.
                 if (nums[low] == 0)
-                    zeros--;
+                    k++;
                 low++;
             }
-            high++;
         }
-        return res;
+        return high - low;
     }
 };
 
