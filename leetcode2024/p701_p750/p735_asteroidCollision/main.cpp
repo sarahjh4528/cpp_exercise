@@ -13,6 +13,11 @@ public:
     }
 
 /*
+2 <= asteroids.length <= 10^4
+-1000 <= asteroids[i] <= 1000
+asteroids[i] != 0
+*/
+/*
 Runtime 0 ms Beats 100.00%
 Memory 20.91 MB Beats 18.13%
 */
