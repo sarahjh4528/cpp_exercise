@@ -1,9 +1,3 @@
-/*
-Constraints:
-
-The number of nodes in the list is the range [0, 5000].
--5000 <= Node.val <= 5000
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -41,23 +35,27 @@ public:
         }
         cout << endl;
     }
+
+/*
+The number of nodes in the list is the range [0, 5000].
+-5000 <= Node.val <= 5000
+*/
 /*
 Runtime 0 ms Beats 100.00%
-Memory 13.27 MB Beats 18.88%
+Memory 13.43 MB Beats 41.24%
 */
     ListNode* reverseList(ListNode* head) {
         if (!head || !head->next)
             return head;
-
-        ListNode *n1 = head, *n2 = n1->next, *tmp;
-        n1->next = NULL;
-        while (n2) {
-            tmp = n2->next;
-            n2->next = n1;
-            n1 = n2;
-            n2 = tmp;
-        }
-        return n1;
+        ListNode *p1 = head, *p2 = head->next, *front;
+        do {
+            front = p2->next;
+            p2->next = p1;
+            p1 = p2;
+            p2 = front;
+        } while (front);
+        head->next = NULL;
+        return p1;
     }
 };
 

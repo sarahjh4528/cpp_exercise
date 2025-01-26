@@ -37,27 +37,27 @@ public:
     }
 
 /*
-The number of nodes in the list is the range [0, 5000].
--5000 <= Node.val <= 5000
+The number of nodes in the linked list is in the range [0, 10^4].
+-10^6 <= Node.val <= 10^6
 */
-    ListNode* reverseList(ListNode* head) {
+    ListNode* oddEvenList(ListNode* head) {
     }
 };
 
 int main()
 {
-    vector<vector<int>> vn = {
+    vector<vector<int>> vlist = {
         {1,2,3,4,5},
-        {1,2},
-        {}
+        {2,1,3,5,6,4,7}
     };
     Solution s;
 
-    for (auto nums : vn) {
-        ListNode *head = s.buildLinkedList(nums);
+    for (auto list : vlist) {
+        ListNode *head = s.buildLinkedList(list);
+        cout << "Input list: " << endl;
         s.printList(head);
-        ListNode *output = s.reverseList(head);
-        cout << "After reverse. " << endl;
+        ListNode *output = s.oddEvenList(head);
+        cout << "Output odd even list: " << endl;
         s.printList(output);
     }
 
