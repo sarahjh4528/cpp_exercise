@@ -4,10 +4,6 @@
 using namespace std;
 
 class Solution {
-    bool isVowel(char c) {
-        char cl = tolower(c);
-        return (cl == 'a' || cl == 'e' || cl == 'i' || cl == 'o' || cl == 'u');
-    }
 public:
 /*
 1 <= s.length <= 3 * 10^5

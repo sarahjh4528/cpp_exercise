@@ -1,10 +1,3 @@
-/*
-Constraints:
-
-2 <= nums.length <= 10^5
--30 <= nums[i] <= 30
-The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -18,6 +11,11 @@ public:
         cout << endl;
     }
 
+/*
+2 <= nums.length <= 10^5
+-30 <= nums[i] <= 30
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+*/
     vector<int> productExceptSelf(vector<int>& nums) {
     }
 };

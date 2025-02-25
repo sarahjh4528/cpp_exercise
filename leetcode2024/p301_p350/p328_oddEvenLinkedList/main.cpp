@@ -42,21 +42,20 @@ The number of nodes in the linked list is in the range [0, 10^4].
 */
 /*
 Runtime 0 ms Beats 100.00%
-Memory 15.67 MB Beats 29.04%
-
-Time: O(n), Space: O(1)
+Memory 15.58 MB Beats 63.44%
 */
     ListNode* oddEvenList(ListNode* head) {
         if (!head || !head->next || !head->next->next)
             return head;
-        ListNode *cur1 = head, *evenhead = head->next, *cur2 = evenhead;
-        while (cur1 && cur2 && cur2->next) {
-            cur1->next = cur1->next->next;
-            cur2->next = cur2->next->next;
-            cur1 = cur1->next;
-            cur2 = cur2->next;
+
+        ListNode *evenhead = head->next, *odd = head, *even = evenhead;
+        while (odd && even && even->next) {
+            odd->next = even->next;
+            odd = odd->next;
+            even->next = odd->next;
+            even = even->next;
         }
-        cur1->next = evenhead;
+        odd->next = evenhead;
         return head;
     }
 };
