@@ -12,6 +12,9 @@ public:
         cout << endl;
     }
 /*
+Runtime 3 ms Beats 30.32%
+Memory 16.57 MB Beats 93.91%
+
 Same design as fastest solution.
 
 Time: O(m*n), Space O(m*n)
@@ -34,7 +37,7 @@ Time: O(m*n), Space O(m*n)
         if (q.size() == 0)  // no rotting orange
             return -1;
 
-        vector<vector<int>> directions = {{1,0},{-1,0},{0,1},{0,-1}};
+        vector<pair<int,int>> dirs = {{1,0},{-1,0},{0,1},{0,-1}};
         int res = 0;
         while (!q.empty() && fresh > 0) {
             res++;
@@ -42,12 +45,12 @@ Time: O(m*n), Space O(m*n)
             for (int i = 0; i < qsize; i++) {
                 auto [x,y] = q.front();
                 q.pop();
-                for (auto dir : directions) {
-                    int dx = x + dir[0], dy = y + dir[1];
-                    if (dx >= 0 && dx < m && dy >= 0 && dy < n && grid[dx][dy] == 1) {
-                        grid[dx][dy] = 2;
+                for (auto& [dx,dy] : dirs) {
+                    int nx = x + dx, ny = y + dy;
+                    if (nx >= 0 && nx < m && ny >= 0 && ny < n && grid[nx][ny] == 1) {
+                        grid[nx][ny] = 2;
                         fresh--;
-                        q.push(make_pair(dx, dy));
+                        q.push(make_pair(nx, ny));
                     }
                 }
             }     
@@ -64,7 +67,7 @@ int main()
     vector<vector<int>> grid = { {2,1,1},{0,1,1},{1,0,1} };
     vector<vector<int>> grid = { {0,2} };
 #endif
-    vector<vector<int>> grid = { {0,2} };
+    vector<vector<int>> grid = { {2,1,1},{0,1,1},{1,0,1} };
     Solution s;
 
     int output = s.orangesRotting(grid);

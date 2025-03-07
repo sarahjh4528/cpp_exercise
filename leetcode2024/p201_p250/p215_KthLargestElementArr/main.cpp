@@ -12,12 +12,31 @@ public:
         cout << endl;
     }
 
+/*
+Constraints:
+
+1 <= k <= nums.length <= 10^5
+-10^4 <= nums[i] <= 10^4
+*/
+/*
+Runtime 18 ms Beats 89.09%
+Memory 61.56 MB Beats 43.32%
+
+Time: O(nlog(n))
+Space: O(k)
+
+In theory, quick select avg time complexity, O(n), worst case O(n^2), though
+the solution runs much slower than following solution.
+*/
     int findKthLargest(vector<int>& nums, int k) {
         priority_queue<int, vector<int>, greater<int>> minQ;
         for (auto n : nums) {
-            minQ.push(n);
-            if (minQ.size() > k)
+            if (minQ.size() < k)
+                minQ.push(n);
+            else if (n > minQ.top()) {
+                minQ.push(n);
                 minQ.pop();
+            }
         }
         return minQ.top();
     }
