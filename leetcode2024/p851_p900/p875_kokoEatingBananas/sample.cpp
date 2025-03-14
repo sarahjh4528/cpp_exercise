@@ -11,6 +11,11 @@ public:
         cout << endl;
     }
 
+/*
+1 <= piles.length <= 10^4
+piles.length <= h <= 10^9
+1 <= piles[i] <= 10^9
+*/
     int minEatingSpeed(vector<int>& piles, int h) {
     }
 };
@@ -27,7 +32,7 @@ int main()
     for (int i = 0; i < vh.size(); i++) {
         s.printVec(vpiles[i]);
         int output = s.minEatingSpeed(vpiles[i], vh[i]);
-        cout << "Minimum bananas " << output << " can finish in " << vh[i] << " hours." << endl;
+        cout << "Minimum bananas to finish in " << vh[i] << " hours:" << output << endl;
     }
 
     return 0;

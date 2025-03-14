@@ -27,10 +27,9 @@ Fastest solution same design (Binary search)
             int mid = (high + low)/2;
             long long hrs = 0;
             for (auto p : piles)
-//                hrs += p/mid + (p%mid != 0);  // round up, Ex: 3/2 round up to 2
                 hrs += ceil((double)pl / (double)mid);
             if (hrs <= h) {// hrs, can try smaller values
-                res = min(res, mid);
+                res = mid;
                 high = mid - 1;
             } else {
                 low = mid + 1;
