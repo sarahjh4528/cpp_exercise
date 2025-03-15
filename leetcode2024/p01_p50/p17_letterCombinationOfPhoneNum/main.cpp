@@ -1,16 +1,10 @@
-/*
-Runtime 0 ms Beats 100.00%
-Memory 8.78 MB Beats 20.37%
-
-Time: O(4^N * N), Space: O(n)
-4 : longest string length in map
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
 using namespace std;
 
-unordered_map<char, string> map = {
+class Solution {
+    unordered_map<char, string> cmap = {
         {'2', "abc"},
         {'3', "def"},
         {'4', "ghi"},
@@ -19,21 +13,18 @@ unordered_map<char, string> map = {
         {'7', "pqrs"},
         {'8', "tuv"},
         {'9', "wxyz"}
-};
-
-class Solution {
-    void solve(string& digits, int i, string& cur, vector<string>& res) {
+    };
+    void getCombinations(string const& digits, int i, string& curstr, vector<string>& res) {
         if (i == digits.length()) {
-            res.push_back(cur);
+            res.push_back(curstr);
             return;
         }
-        for (auto c : map[digits[i]]) {
-            cur += c;
-            solve(digits, i+1, cur, res);
-            cur.pop_back();
+        for (auto c : cmap[digits[i]]) {
+            curstr += c;
+            getCombinations(digits, i+1, curstr, res);
+            curstr.pop_back();
         }
     }
-
 public:
     void printVec(vector<string>& v) {
         for (auto i : v)
@@ -41,13 +32,20 @@ public:
         cout << endl;
     }
 
+/*
+0 <= digits.length <= 4
+digits[i] is a digit in the range ['2', '9'].
+*/
+/*
+Runtime 0 ms Beats 100.00%
+Memory 9.16 MB Beats 73.62%
+*/
     vector<string> letterCombinations(string digits) {
-        if (digits.length() == 0)
-            return {};
-
         vector<string> res;
-        string cur;
-        solve(digits, 0, cur, res);
+        if (digits.length() == 0)
+            return res;
+        string curstr;
+        getCombinations(digits, 0, curstr, res);
         return res;
     }
 };
