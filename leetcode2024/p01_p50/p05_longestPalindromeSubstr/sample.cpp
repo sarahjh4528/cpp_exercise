@@ -1,9 +1,3 @@
-/*
-Constraints:
-
-1 <= s.length <= 1000
-s consist of only digits and English letters.
-*/
 #include<bits/stdc++.h>
 #include<iostream>
 
@@ -11,6 +5,10 @@ using namespace std;
 
 class Solution {
 public:
+/*
+1 <= s.length <= 1000
+s consist of only digits and English letters.
+*/
     string longestPalindrome(string s) {
     }
 };

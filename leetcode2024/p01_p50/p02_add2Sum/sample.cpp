@@ -37,31 +37,11 @@ public:
     }
 
 /*
-Runtime 0 ms Beats 100.00%
-Memory 77.28 MB Beats 12.24%
-
-Time: O(n)
-Space: O(1)
+The number of nodes in each linked list is in the range [1, 100].
+0 <= Node.val <= 9
+It is guaranteed that the list represents a number that does not have leading zeros.
 */
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode dummy, *cur = &dummy;
-        int carry = 0;
-        while (l1 || l2) {
-            if (l1) {
-                carry += l1->val;
-                l1 = l1->next;
-            }
-            if (l2) {
-                carry += l2->val;
-                l2 = l2->next;
-            }
-            cur->next = new ListNode(carry % 10);
-            cur = cur->next;
-            carry /= 10;
-        }
-        if (carry)
-            cur->next = new ListNode(carry);
-        return dummy.next;
     }
 };
 
